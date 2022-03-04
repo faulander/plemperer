@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sporbixn.db"
+}
+
+model Ausgabe {
+  id         Int  @id @default(autoincrement())
+  created_at DateTime
+  bemerkung  String?
+  ausgabe    Float
+  kategorie  Kategorie @relation(fields: [kategorieId], references: [id])
+  kategorieId Int
+}
+
+model Kategorie {
+  id         Int  @id @default(autoincrement())
+  kategorie  String
+  ausgaben   Ausgabe[]
+}
