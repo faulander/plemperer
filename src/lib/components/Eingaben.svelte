@@ -27,13 +27,6 @@
     }
 
     async function saveData() {
-        // console.log("wertChosen: ", wertChosen);
-        // console.log("hauptKategorieChosen: ", hauptKategorieChosen);
-        // console.log("supKategorieChosen: ", supKategorieChosen);
-        // console.log("artChosen: ", artChosen);
-        // console.log("memoChosen: ", memoChosen);
-        // console.log("datumChosen: ", datumChosen);
-
         const response = await fetch("/api/db", {
             method: "POST",
 
@@ -70,7 +63,7 @@
             />
         </div>
         <div class="w-full sm:col-span-1 md:col-span-2 md:mr-2 lg:col-span-2">
-            <label for="eingaben_ausgaben">Ausgabe/Einnahme</label>
+            <label for="eingaben_ausgaben">€</label>
             <input
                 bind:value={wertChosen}
                 class="w-full h-[38px] border border-slate-300 pl-2 focus:border-slate-800 active:border-slate-800"

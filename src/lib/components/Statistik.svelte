@@ -13,7 +13,7 @@
     $: data = data;
 </script>
 
-<div class="grid grid-cols-3 bg-slate-100 rounded-md p-2">
+<div class="grid grid-cols-3 bg-slate-100 rounded-md p-2 text-xs">
     <div class="col-span-3 mb-2">Ausgaben im aktuellen Monat:</div>
     {#each data as stat, index}
         <div class=" pl-2">

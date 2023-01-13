@@ -5,3 +5,4 @@ export function getCurrentMonth() {
 
     return [firstDay.toISOString().split("T")[0], lastDay.toISOString().split("T")[0]]
 }
+
