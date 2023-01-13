@@ -1,7 +1,7 @@
 <script>
     import Svelecte from "svelecte";
     export let data;
-    console.log("data: ", data);
+    //console.log("data: ", data);
 
     let hauptKategorieChosen;
     let supKategorieChosen;

@@ -41,9 +41,9 @@ async function createTables(db) {
 
 export async function getOrCreateDB() {
   try {
-    db = new Database('Plemperer.db', { verbose: console.log, fileMustExist: true });
+    db = new Database('Plemperer.db', { fileMustExist: true });
   } catch (err) {
-    db = new Database('Plemperer.db', { verbose: console.log });
+    db = new Database('Plemperer.db', {  });
     createTables(db)
     
     db.prepare(`INSERT INTO art (name) VALUES(?)`).run("Ausgabe")
@@ -95,11 +95,11 @@ export async function getOrCreateDB() {
 
 export async function saveDataToDB(wert, sub, art, memo, datum) {  
   const db = await getOrCreateDB();
-  console.log("wert: ", wert)
-  console.log("sub: ", sub)
-  console.log("art: ", art)
-  console.log("memo: ", memo)
-  console.log("datum: ", datum)
+  // console.log("wert: ", wert)
+  // console.log("sub: ", sub)
+  // console.log("art: ", art)
+  // console.log("memo: ", memo)
+  // console.log("datum: ", datum)
   const stmt = db.prepare("INSERT INTO ausgaben (datum, wert, memo, art, subkategorie) VALUES (?,?,?,?,?)")
   const info = stmt.run(datum, wert, memo, art, sub)
   return info.changes
