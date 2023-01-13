@@ -64,13 +64,13 @@
             <label for="datum">Datum</label>
             <input
                 bind:value={datumChosen}
-                class="w-full h-[38px] border border-slate-300 "
+                class="w-full h-[38px] border border-slate-300 pl-1"
                 type="date"
                 inputId="datum"
             />
         </div>
         <div class="w-full sm:col-span-1 md:col-span-2 md:mr-2 lg:col-span-2">
-            <label for="eingaben_ausgaben">Wert</label>
+            <label for="eingaben_ausgaben">Ausgabe/Einnahme</label>
             <input
                 bind:value={wertChosen}
                 class="w-full h-[38px] border border-slate-300 pl-2 focus:border-slate-800 active:border-slate-800"
