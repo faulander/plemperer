@@ -7,9 +7,8 @@
     });
     let gesamt = 0;
     data.forEach((el) => {
-        gesamt += el.summe;
+        gesamt += Math.abs(el.summe);
     });
-    gesamt *= Math.abs(gesamt) - 1;
 
     $: data = data;
 </script>
