@@ -10,6 +10,8 @@
         gesamt += Math.abs(el.summe);
     });
 
+    data.sort((a, b) => a.summe - b.summe);
+
     $: data = data;
 </script>
 
@@ -26,6 +28,8 @@
             {formatter.format(stat.summe * -1)}
         </div>
     {/each}
-    <div class="pl-2 col-span-2">GESAMT</div>
-    <div class="text-right pr-2">{formatter.format(gesamt)}</div>
+    <div class="pl-2 col-span-2 font-semibold mt-1">GESAMT</div>
+    <div class="text-right pr-2 font-semibold mt-1">
+        {formatter.format(gesamt)}
+    </div>
 </div>
