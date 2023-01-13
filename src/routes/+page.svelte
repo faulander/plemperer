@@ -8,9 +8,9 @@
 <div class="bg-slate-200 container mx-auto p-2 mt-2 mb-2 rounded-md shadow-lg">
   <div class="" />
   <div class=""><Eingaben {data} /></div>
-  <div class="grid grid-cols-8 gap-3">
-    <div class="col-span-5">ausgaben</div>
-    <div class="col-span-3"><Statistik data={flat} /></div>
+  <div class="grid lg:grid-cols-8 lg:gap-3 mx-auto w-full">
+    <div class="lg:col-span-5">ausgaben</div>
+    <div class="lg:col-span-3"><Statistik data={flat} /></div>
   </div>
 </div>
 
