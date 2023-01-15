@@ -6,3 +6,12 @@ export function getCurrentMonth() {
     return [firstDay.toISOString().split("T")[0], lastDay.toISOString().split("T")[0]]
 }
 
+export function cl(dict) {
+    const name = Object.keys(dict)[0];
+    const value = dict[name]
+    console.log(`${name}: `, value)
+}
+
+export function range(size, startAt = 0) {
+    return [...Array(size).keys()].map(i => i + startAt);
+}

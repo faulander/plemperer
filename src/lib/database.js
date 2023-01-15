@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3'
+import { cl,range } from './components/helpers'
 let db
 
 async function createTables(db) {
@@ -40,6 +41,9 @@ async function createTables(db) {
   }
 
 export async function getOrCreateDB() {
+  const currentDBVersion = 1
+  let migrationsToApply = []
+
   try {
     db = new Database('Plemperer.db', { fileMustExist: true });
   } catch (err) {
@@ -88,18 +92,20 @@ export async function getOrCreateDB() {
     db.prepare(`INSERT INTO subkategorie (hauptkategorie, name) VALUES(?,?)`).run(7, "Bekleidung")
     db.prepare(`INSERT INTO subkategorie (hauptkategorie, name) VALUES(?,?)`).run(7, "Geschenke")
     db.prepare(`INSERT INTO subkategorie (hauptkategorie, name) VALUES(?,?)`).run(7, "Sonstiges")
+  } finally {
+    // apply migrations
+    const pragma = db.prepare("PRAGMA user_version").get()
+    const current_migration = pragma.user_version
+    if (current_migration < currentDBVersion){
+       migrationsToApply = range(currentDBVersion, current_migration)
+    }
   }
-  console.log("db after getOrCreateDB: ", db)
+  cl({migrationsToApply})
   return db
 }
 
 export async function saveDataToDB(wert, sub, art, memo, datum) {  
   const db = await getOrCreateDB();
-  // console.log("wert: ", wert)
-  // console.log("sub: ", sub)
-  // console.log("art: ", art)
-  // console.log("memo: ", memo)
-  // console.log("datum: ", datum)
   const stmt = db.prepare("INSERT INTO ausgaben (datum, wert, memo, art, subkategorie) VALUES (?,?,?,?,?)")
   const info = stmt.run(datum, wert, memo, art, sub)
   return info.changes

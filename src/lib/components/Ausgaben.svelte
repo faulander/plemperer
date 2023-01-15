@@ -5,6 +5,7 @@
     const subkategorien = data.subkategorien;
     const arten = data.arten;
     const ausgaben = data.ausgaben;
+    import { cl } from "$lib/components/helpers.js";
 
     const formatter = new Intl.NumberFormat("de-DE", {
         style: "currency",
