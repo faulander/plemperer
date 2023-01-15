@@ -24,12 +24,27 @@ export async function GET({url}) {
   `
   const flat = await db.prepare(stmt).all()
 
+  const stmtHaupt = `
+  SELECT SUM(wert) AS summe, hauptkategorie.name AS hauptkategorie  FROM ausgaben
+  LEFT JOIN subkategorie
+    ON ausgaben.subkategorie = subkategorie.subkategorie_id
+  LEFT JOIN hauptkategorie
+    ON subkategorie.hauptkategorie = hauptkategorie.hauptkategorie_id
+  LEFT JOIN art
+    ON ausgaben.art = art.art_id
+  WHERE ausgaben.datum BETWEEN '${startOfMonth}' AND '${endOfMonth}'
+  GROUP BY hauptkategorie
+  `  
+
+  const flatHaupt = db.prepare(stmtHaupt).all()
+
   const data = {
     hauptkategorien: haupt,
     subkategorien: sub,
     arten: art,
     ausgaben: aus,
-    flat: flat
+    flat: flat,
+    flatHaupt: flatHaupt
   }
   return new Response(JSON.stringify(data))
 }

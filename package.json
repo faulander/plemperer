@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "better-sqlite3": "^8.0.1"
   }
 }
