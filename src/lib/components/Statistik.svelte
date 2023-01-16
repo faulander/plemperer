@@ -1,6 +1,4 @@
 <script>
-    import { cl } from "$lib/components/helpers.js";
-
     export let data;
     const flat = data.flat;
     const flatHaupt = data.flatHaupt;
@@ -25,7 +23,7 @@
 
     $: {
         nurHaupt = nurHaupt;
-        cl({ nurHaupt });
+        //cl({ nurHaupt });
     }
 </script>
 

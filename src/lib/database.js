@@ -1,5 +1,7 @@
-import Database from 'better-sqlite3'
-import { cl,range } from './components/helpers'
+import Database from 'better-sqlite3';
+import { range } from './components/helpers';
+import { getMigrations } from './migrations';
+
 let db
 
 async function createTables(db) {
@@ -97,10 +99,22 @@ export async function getOrCreateDB() {
     const pragma = db.prepare("PRAGMA user_version").get()
     const current_migration = pragma.user_version
     if (current_migration < currentDBVersion){
+      console.log(`DB Version: ${current_migration} Current Version: ${currentDBVersion}`)
        migrationsToApply = range(currentDBVersion, current_migration)
     }
   }
-  cl({migrationsToApply})
+  const migrations = getMigrations()
+  let stmt
+  migrationsToApply.forEach(el => {
+    const mig = migrations[el]
+    for (const key in mig) {
+      console.log("Applying migration: ", mig[key])
+      stmt = mig[key]
+      db.prepare(stmt).run()
+    }
+  })
+  stmt = "PRAGMA user_version=" + currentDBVersion
+  db.prepare(stmt).run()
   return db
 }
 

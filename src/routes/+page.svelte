@@ -1,6 +1,6 @@
 <script>
-  import Eingaben from "$lib/components/Eingaben.svelte";
   import Ausgaben from "$lib/components/Ausgaben.svelte";
+  import Eingaben from "$lib/components/Eingaben.svelte";
   import Statistik from "$lib/components/Statistik.svelte";
   export let data;
 </script>
@@ -12,6 +12,3 @@
     <div class="lg:col-span-3"><Statistik {data} /></div>
   </div>
 </div>
-
-<style>
-</style>
